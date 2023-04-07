@@ -1,0 +1,29 @@
+
+.notes-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.noteGrid {
+  margin: 25px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.note {
+  border: 2px solid black;
+  width: 175px;
+  height: 175px;
+  padding: 25px;
+  gap: 5px;
+}
