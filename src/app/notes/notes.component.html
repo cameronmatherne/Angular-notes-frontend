@@ -16,14 +16,14 @@
 
 <div class="notes-container">
   <div class="noteGrid">
-    <li *ngFor="let note of notes">
+    <div class="note" *ngFor="let note of notes">
       <h2>{{ note.title }}</h2>
       <p>{{ note.content }}</p>
       <div class="footer">
-        <button> delete note</button>
-        <button> modify note</button>
+        <button class="footerBtns" (click)="deleteNote(note.id)"> delete note</button>
+        <button class="footerBtns"> modify note</button>
       </div>
-    </li>
+    </div>
   </div>
 
 </div>

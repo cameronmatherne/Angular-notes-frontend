@@ -20,7 +20,11 @@ export  class NotesComponent {
   @ViewChild('titleInput') titleInput: any;
 
   notes: Note[] = [
-    {id: 1, title: "Note 1", content: "My content"},
+    {
+      id: 1,
+      title: "Note 1",
+      content: "My content"
+    },
   ];
 
   createNote(title:string, content:string) {
@@ -38,6 +42,13 @@ export  class NotesComponent {
     this.contentInput.nativeElement.value = '';
     this.dialog.close();
     return newNote;
+  }
+  deleteNote(id: number) {
+    this.notes = this.notes.filter((e, i) => e.id !== id);
+  }
+
+  modifyNote(id: number) {
+
   }
 
 }

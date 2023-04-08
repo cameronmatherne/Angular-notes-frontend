@@ -11,6 +11,10 @@
   flex-direction: column;
 }
 
+.note {
+  border: 2px solid black;
+  padding: 15px;
+}
 
 .noteGrid {
   margin: 25px;
@@ -26,4 +30,9 @@
   height: 175px;
   padding: 25px;
   gap: 5px;
+}
+
+.footerBtns {
+  gap: 15px;
+  margin: 10px;
 }
