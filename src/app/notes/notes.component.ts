@@ -1,11 +1,11 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, QueryList, ViewChild} from '@angular/core';
 
 export interface Note {
   id: number;
   title: string;
   content: string;
 }
-const noters: Note[] = [];
+const notes: Note[] = [];
 
 @Component({
   selector: 'app-notes',
@@ -13,12 +13,13 @@ const noters: Note[] = [];
   styleUrls: ['./notes.component.css']
 })
 
+
 export  class NotesComponent {
 
   @ViewChild('dialog') dialog: any;
   @ViewChild('contentInput') contentInput: any;
   @ViewChild('titleInput') titleInput: any;
-  @ViewChild('noteContent') noteContent: any;
+  @ViewChild('noteContent') noteContents: any;
 
 
   notes: Note[] = [
@@ -28,8 +29,22 @@ export  class NotesComponent {
       title: "Note title goes here",
       content: "Note content goes here"
     },
+    {
+      id: 2,
+      title: "Note title goes here",
+      content: "Note content goes here"
+    },
+    {
+      id: 3,
+      title: "Note title goes here",
+      content: "Note content goes here"
+    },
+    {
+      id: 4,
+      title: "Note title goes here",
+      content: "Note content goes here"
+    },
   ];
-
   createNote(title:string, content:string) {
     // append note with user input
     const newNote: Note = {
@@ -43,6 +58,8 @@ export  class NotesComponent {
     // clear fields
     this.titleInput.nativeElement.value = '';
     this.contentInput.nativeElement.value = '';
+
+    // close modal
     this.dialog.close();
     return newNote;
   }
@@ -51,13 +68,15 @@ export  class NotesComponent {
     this.notes = this.notes.filter((e, i) => e.id !== id);
   }
 
-  modifyNote(id: number) {
-    const noteIndex = this.notes.findIndex(note => note.id === id);
-    const div = this.noteContent;
+  modifyNote(index: number) {
+    const note = this.notes[index];
+    const noteContent = this.noteContents.toArray()[index];
     const textarea = document.createElement('textarea');
-    textarea.value = this.notes[noteIndex].content;
-
+    textarea.value = note.content;
+    textarea.placeholder = note.content;
+    this.noteContents.toArray()[index] = new ElementRef(textarea);
   }
+
 }
 
 
