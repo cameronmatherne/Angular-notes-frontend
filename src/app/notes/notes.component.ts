@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 
 export interface Note {
   id: number;
@@ -13,17 +13,20 @@ const noters: Note[] = [];
   styleUrls: ['./notes.component.css']
 })
 
-
 export  class NotesComponent {
+
   @ViewChild('dialog') dialog: any;
   @ViewChild('contentInput') contentInput: any;
   @ViewChild('titleInput') titleInput: any;
+  @ViewChild('noteContent') noteContent: any;
+
 
   notes: Note[] = [
+    // sample note
     {
       id: 1,
-      title: "Note 1",
-      content: "My content"
+      title: "Note title goes here",
+      content: "Note content goes here"
     },
   ];
 
@@ -44,13 +47,17 @@ export  class NotesComponent {
     return newNote;
   }
   deleteNote(id: number) {
+    // filter out note that matches the given id
     this.notes = this.notes.filter((e, i) => e.id !== id);
   }
 
   modifyNote(id: number) {
+    const noteIndex = this.notes.findIndex(note => note.id === id);
+    const div = this.noteContent;
+    const textarea = document.createElement('textarea');
+    textarea.value = this.notes[noteIndex].content;
 
   }
-
 }
 
 

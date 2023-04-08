@@ -18,12 +18,12 @@
   <div class="noteGrid">
     <div class="note" *ngFor="let note of notes">
       <h2>{{ note.title }}</h2>
-      <p>{{ note.content }}</p>
+      <div #noteContent> {{ note.content }}</div>
+
       <div class="footer">
         <button class="footerBtns" (click)="deleteNote(note.id)"> delete note</button>
-        <button class="footerBtns"> modify note</button>
+        <button class="footerBtns" (click)="modifyNote(note.id)"> modify note</button>
       </div>
     </div>
   </div>
-
 </div>
