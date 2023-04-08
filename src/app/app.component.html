@@ -22,7 +22,21 @@
 </div>
 
 <div class="content" role="main">
-  <app-notes></app-notes>
+  <h1> Notes application </h1>
+  <dialog #dialog>
+    <div className="modal">
+      <label> Note tite: </label>
+      <input type="text" #titleInput>
+      <label> Note content: </label>
+      <input type="text" #contentInput>
+    </div>
+    <div>
+      <button type="submit "(click)="createNote(titleInput.value, contentInput.value)"> Create note </button>
+    </div>
+  </dialog>
 
+  <button (click)="dialog.showModal()">Add note</button>
+
+  <app-notes></app-notes>
 </div>
 

@@ -301,3 +301,9 @@ svg#clouds {
   display: flex;
   align-items: center;
 }
+
+.modal {
+  display: flex;
+  flex-direction: column;
+
+}
