@@ -1,10 +1,29 @@
+
+<h1> Notes application </h1>
+<dialog #dialog>
+  <div>
+    <label> Note tite: </label>
+    <input type="text" #titleInput>
+    <label> Note content: </label>
+    <input type="text" #contentInput>
+    <button (click)="createNote(titleInput.value, contentInput.value)" > Create note </button>
+    <button (click)="dialog.close()"> Cancel </button>
+  </div>
+</dialog>
+
+<button (click)="dialog.showModal()">Add note</button>
+
+
 <div class="notes-container">
-  <div class="body">
-    <div class="noteGrid">
-      <app-note> </app-note>
-      <app-note> </app-note>
-      <app-note> </app-note>
+  <div class="noteGrid">
+    <li *ngFor="let note of notes">
+      <h2>{{ note.title }}</h2>
+      <p>{{ note.content }}</p>
+      <div class="footer">
+        <button> delete note</button>
+        <button> modify note</button>
       </div>
+    </li>
   </div>
 
 </div>

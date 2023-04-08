@@ -307,3 +307,11 @@ svg#clouds {
   flex-direction: column;
 
 }
+
+.footer {
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+  width: 100px;
+
+}
