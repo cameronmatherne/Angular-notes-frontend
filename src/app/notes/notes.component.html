@@ -11,12 +11,9 @@
 </dialog>
 
 <button (click)="dialog.showModal()">Add note</button>
-<button (click)="getNotes()"> Get notes </button>
 <ul class="notes">
   <li *ngFor="let note of notes">
-    <h1> {{note.title}} </h1>
-    <h2> {{note.content}} </h2>
-    <h3> {{note.id}} </h3>
+    <h1> {{ note }} </h1>
   </li>
 </ul>
 

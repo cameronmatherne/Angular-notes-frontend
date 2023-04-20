@@ -25,16 +25,15 @@ export  class NotesComponent {
   constructor(private noteService: NoteService,
               private http: HttpClient) {}
 
-  notes$: Observable<Note[]> | undefined
   notes: Note[] = []
 
   ngOnInit() {
-    this.getNotes();
+    this.noteService.getNotes().subscribe((data: any) => {
+      this.notes = data;
+    });
   }
 
-  getNotes() {
-    this.notes$ = this.noteService.getNotes();
-  }
+
 
   createNote(title: string, content: string) {
     title = title.trim();
