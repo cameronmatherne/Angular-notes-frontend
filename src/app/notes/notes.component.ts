@@ -1,10 +1,10 @@
 import {Component, ElementRef, OnInit, QueryList, ViewChild} from '@angular/core';
+import { Note} from "../models/note";
+import { NoteService } from "../services/NoteService";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Injectable} from "@angular/core";
+import { Observable, of } from 'rxjs';
 
-export interface Note {
-  id: number;
-  title: string;
-  content: string;
-}
 const notes: Note[] = [];
 
 @Component({
@@ -16,65 +16,34 @@ const notes: Note[] = [];
 
 export  class NotesComponent {
 
+  private notesUrl = "https://localhost:7224/api/Notes";
   @ViewChild('dialog') dialog: any;
   @ViewChild('contentInput') contentInput: any;
   @ViewChild('titleInput') titleInput: any;
   @ViewChild('noteContent') noteContents: any;
 
+  constructor(private noteService: NoteService,
+              private http: HttpClient) {}
 
-  notes: Note[] = [
-    // sample note
-    {
-      id: 1,
-      title: "Note title goes here",
-      content: "Note content goes here"
-    },
-    {
-      id: 2,
-      title: "Note title goes here",
-      content: "Note content goes here"
-    },
-    {
-      id: 3,
-      title: "Note title goes here",
-      content: "Note content goes here"
-    },
-    {
-      id: 4,
-      title: "Note title goes here",
-      content: "Note content goes here"
-    },
-  ];
-  createNote(title:string, content:string) {
+  notes$: Observable<Note[]> | undefined
+  notes: Note[] = []
+
+  ngOnInit() {
+    this.getNotes();
+  }
+
+  getNotes() {
+    this.notes$ = this.noteService.getNotes();
+  }
+
+  createNote(title: string, content: string) {
+    title = title.trim();
+    this.noteService.addNote({title} as Note)
+      .subscribe(note => {
+        this.notes.push(note);
+      })
     // append note with user input
-    const newNote: Note = {
-      id: Math.random(),
-      title: title,
-      content: content
-    };
-    // add note to list
-    this.notes.push(newNote);
 
-    // clear fields
-    this.titleInput.nativeElement.value = '';
-    this.contentInput.nativeElement.value = '';
-
-    // close modal
-    this.dialog.close();
-    return newNote;
-  }
-  deleteNote(id: number) {
-    // filter out note that matches the given id
-    this.notes = this.notes.filter((e, i) => e.id !== id);
-  }
-
-  modifyNote(index: number) {
-    const note = this.notes[index];
-    const noteContent = this.noteContents.toArray()[index];
-    const textarea = document.createElement('textarea');
-    textarea.value = note.content;
-    textarea.placeholder = note.content;
-    this.noteContents.toArray()[index] = new ElementRef(textarea);
   }
 
 }

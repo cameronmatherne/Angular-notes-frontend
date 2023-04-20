@@ -6,24 +6,17 @@
     <input type="text" #titleInput>
     <label> Note content: </label>
     <input type="text" #contentInput>
-    <button (click)="createNote(titleInput.value, contentInput.value)" > Create note </button>
     <button (click)="dialog.close()"> Cancel </button>
   </div>
 </dialog>
 
 <button (click)="dialog.showModal()">Add note</button>
+<button (click)="getNotes()"> Get notes </button>
+<ul class="notes">
+  <li *ngFor="let note of notes">
+    <h1> {{note.title}} </h1>
+    <h2> {{note.content}} </h2>
+    <h3> {{note.id}} </h3>
+  </li>
+</ul>
 
-
-<div class="notes-container">
-  <div class="noteGrid">
-    <div class="note" *ngFor="let note of notes">
-      <h2>{{ note.title }}</h2>
-      <div #noteContent> {{ note.content }}</div>
-
-      <div class="footer">
-        <button class="footerBtns" (click)="deleteNote(note.id)"> delete note</button>
-        <button class="footerBtns" (click)="modifyNote(note.id)"> modify note</button>
-      </div>
-    </div>
-  </div>
-</div>
