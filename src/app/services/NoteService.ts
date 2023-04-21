@@ -6,8 +6,6 @@ import { Observable, of } from 'rxjs';
 @Injectable({ providedIn: 'root'})
 export class NoteService {
 
-  private notesUrl = "https://localhost:7224/api/Notes";
-
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -16,11 +14,7 @@ export class NoteService {
 
 
   getNotes(): Observable<Note[]> {
-    return this.http.get<Note[]>(this.notesUrl);
-  }
-
-  addNote(note: Note): Observable<Note> {
-    return this.http.post<Note>(this.notesUrl, note, this.httpOptions)
+    return this.http.get<Note[]>('https://localhost:7224/api/Notes');
   }
 
 }

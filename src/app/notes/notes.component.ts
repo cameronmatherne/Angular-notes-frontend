@@ -14,7 +14,8 @@ const notes: Note[] = [];
 })
 
 
-export  class NotesComponent {
+export  class NotesComponent implements OnInit {
+
 
   private notesUrl = "https://localhost:7224/api/Notes";
   @ViewChild('dialog') dialog: any;
@@ -25,25 +26,16 @@ export  class NotesComponent {
   constructor(private noteService: NoteService,
               private http: HttpClient) {}
 
-  notes: Note[] = []
+
+  notes: Note[] = [];
 
   ngOnInit() {
-    this.noteService.getNotes().subscribe((data: any) => {
-      this.notes = data;
+    this.noteService.getNotes().subscribe((notes) => {
+      this.notes = notes;
     });
   }
 
 
-
-  createNote(title: string, content: string) {
-    title = title.trim();
-    this.noteService.addNote({title} as Note)
-      .subscribe(note => {
-        this.notes.push(note);
-      })
-    // append note with user input
-
-  }
 
 }
 

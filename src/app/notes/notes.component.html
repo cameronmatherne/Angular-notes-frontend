@@ -13,7 +13,8 @@
 <button (click)="dialog.showModal()">Add note</button>
 <ul class="notes">
   <li *ngFor="let note of notes">
-    <h1> {{ note }} </h1>
+    <h1> {{ note.title }} </h1>
+    <h2> {{ note.content }}</h2>
   </li>
 </ul>
 
