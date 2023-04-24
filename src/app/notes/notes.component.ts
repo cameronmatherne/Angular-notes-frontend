@@ -1,11 +1,10 @@
 import {Component, ElementRef, OnInit, QueryList, ViewChild} from '@angular/core';
-import { Note} from "../models/note";
+import { Note } from "../models/note";
 import { NoteService } from "../services/NoteService";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Injectable} from "@angular/core";
 import { Observable, of } from 'rxjs';
 
-const notes: Note[] = [];
 
 @Component({
   selector: 'app-notes',
@@ -30,13 +29,29 @@ export  class NotesComponent implements OnInit {
   notes: Note[] = [];
 
   ngOnInit() {
-    this.noteService.getNotes().subscribe((notes) => {
-      this.notes = notes;
-    });
+    this.getNotes()
+
   }
 
+  getNotes() {
+    this.noteService.getNotes().subscribe({
+      next: (notes) => {
+        this.notes = notes;
+      },
+      error: (err) => {
 
+      }
+    })
+  }
 
+  deleteNote(id: any) {
+    this.noteService.deleteNote(id).subscribe({
+      next: (() => this.getNotes())
+    })
+  }
+  addNote() {
+
+  }
 }
 
 

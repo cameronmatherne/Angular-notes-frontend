@@ -7,14 +7,20 @@
     <label> Note content: </label>
     <input type="text" #contentInput>
     <button (click)="dialog.close()"> Cancel </button>
+    <button (click)="addNote()"> Add note </button>
   </div>
 </dialog>
 
-<button (click)="dialog.showModal()">Add note</button>
-<ul class="notes">
-  <li *ngFor="let note of notes">
-    <h1> {{ note.title }} </h1>
-    <h2> {{ note.content }}</h2>
-  </li>
+<button mat-raised-button color="primary" (click)="dialog.showModal()">Add note</button>
+<ul *ngIf="notes" class="notes">
+  <div *ngFor="let note of notes">
+    <mat-card>
+      <mat-card-title> {{ note.title }} </mat-card-title>
+      <mat-card-content> {{ note.content }}  </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="warn" (click)="deleteNote(note.id)"> delete note </button>
+    </mat-card-actions>
+    </mat-card>
+    </div>
 </ul>
 

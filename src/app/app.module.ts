@@ -6,6 +6,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NoteService } from "./services/NoteService";
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { NoteService } from "./services/NoteService";
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatCardModule,
+    MatButtonModule,
   ],
   providers: [ NoteService ],
   bootstrap: [AppComponent]
