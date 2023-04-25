@@ -27,6 +27,8 @@ export  class NotesComponent implements OnInit {
 
 
   notes: Note[] = [];
+  private content: any;
+  private title: number | undefined;
 
   ngOnInit() {
     this.getNotes()
@@ -50,6 +52,14 @@ export  class NotesComponent implements OnInit {
     })
   }
   addNote() {
+     this.title = this.titleInput.nativeElement.value;
+     this.content = this.contentInput.nativeElement.value;
+
+
+
+  }
+
+  modifyNote(id: number) {
 
   }
 }

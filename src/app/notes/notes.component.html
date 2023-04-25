@@ -1,4 +1,5 @@
 
+<div class="container">
 <h1> Notes application </h1>
 <dialog #dialog>
   <div>
@@ -19,8 +20,10 @@
       <mat-card-content> {{ note.content }}  </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="warn" (click)="deleteNote(note.id)"> delete note </button>
+        <button mat-raised-button color="primary" (click)="modifyNote(note.id)"> modify note </button>
     </mat-card-actions>
     </mat-card>
     </div>
 </ul>
+</div>
 

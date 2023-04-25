@@ -36,3 +36,24 @@
   gap: 15px;
   margin: 10px;
 }
+
+mat-card {
+  gap: 15px;
+  margin: 15px;
+  display: flex;
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+button {
+  margin: 5px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
